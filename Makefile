@@ -20,6 +20,7 @@ IMG_NAME := ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 BUILD_CMD = go build -v -o kbot -ldflags "-X="github.com/kaathepython/telebot/cmd.appVersion=${VERSION}
 
 format:
+
 	@gofmt -s -w ./
 
 get:
@@ -47,7 +48,7 @@ macos: format get
 	@printf "Building for: MacOS/$(TARGETARCH)\n"
 	CGO_ENABLED=0 GOOS=darwin GOARCH=$(TARGETARCH) $(BUILD_CMD)
 
-image: build
+image:
 	@printf "Building image: $(IMG_NAME)\n"
 	docker build . -t $(IMG_NAME) --build-arg TARGETARCH=${TARGETARCH}
 
