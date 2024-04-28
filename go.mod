@@ -1,4 +1,4 @@
-module github.com/kaathepython/prometheus-devops/week2-telebot
+module github.com/kaathepython/telebot
 
 go 1.20
 
