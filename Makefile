@@ -13,13 +13,15 @@ REGISTRY := ghcr.io/kaathepython
 APP=$(shell basename $(shell git remote get-url origin))
 #VERSION = $(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 VERSION = $(shell git describe --tags --abbrev=0)
+CURRENT_SYS = $(shell uname -a)
 
 IMG_NAME := ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 BUILD_CMD = go build -v -o kbot -ldflags "-X="github.com/kaathepython/telebot/cmd.appVersion=${VERSION}
 
 format:
-	#@gofmt -s -w ./
+	@printf $(CURRENT_SYS)
+	@gofmt -s -w ./
 
 get:
 	@go get
