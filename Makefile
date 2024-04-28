@@ -56,11 +56,11 @@ push: image
 	docker push $(IMG_NAME)
 
 dive: image
-	IMG=$$(docker images --quiet $(IMG_NAME)); \
-	CI=true docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive --ci --lowestEfficiency=0.99 $${IMG}; \
+	IMG=$$(docker images --quiet $(IMG_NAME))
+	CI=true docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive --ci --lowestEfficiency=0.99 $${IMG}
 	docker rmi $${IMG}
 
 clean:
-	rm -rf kbot; \
+	rm -rf kbot
 	docker rmi $(IMG_NAME)
 
