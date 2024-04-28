@@ -20,40 +20,40 @@ IMG_NAME := ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 BUILD_CMD = go build -v -o kbot -ldflags "-X="github.com/kaathepython/telebot/cmd.appVersion=${VERSION}
 
 format:
-	@printf $(CURRENT_SYS)
-	@gofmt -s -w ./
+	printf $(CURRENT_SYS)
+	gofmt -s -w ./
 
 get:
-	@go get
+	go get
 
 lint:
-	@golint
+	golint
 
 test:
-	@go test -v
+	go test -v
 
 build: format get 
-	@printf "Building for: $(TARGETOS)/$(TARGETARCH)\n"
-	@CGO_ENABLED=0 GOOS=$(TARGETOS) GOARCH=$(TARGETARCH) $(BUILD_CMD)
+	printf "Building for: $(TARGETOS)/$(TARGETARCH)\n"
+	CGO_ENABLED=0 GOOS=$(TARGETOS) GOARCH=$(TARGETARCH) $(BUILD_CMD)
 
 linux: format get 
-	@printf "Building for: linux/$(TARGETARCH)\n"
-	@CGO_ENABLED=0 GOOS=linux GOARCH=$(TARGETARCH) $(BUILD_CMD)
+	printf "Building for: linux/$(TARGETARCH)\n"
+	CGO_ENABLED=0 GOOS=linux GOARCH=$(TARGETARCH) $(BUILD_CMD)
 
 windows: format get 
-	@printf "Building for: Windows/$(TARGETARCH)\n"
-	@CGO_ENABLED=0 GOOS=windows GOARCH=$(TARGETARCH) $(BUILD_CMD)
+	printf "Building for: Windows/$(TARGETARCH)\n"
+	CGO_ENABLED=0 GOOS=windows GOARCH=$(TARGETARCH) $(BUILD_CMD)
 
 macos: format get 
-	@printf "Building for: MacOS/$(TARGETARCH)\n"
-	@CGO_ENABLED=0 GOOS=darwin GOARCH=$(TARGETARCH) $(BUILD_CMD)
+	printf "Building for: MacOS/$(TARGETARCH)\n"
+	CGO_ENABLED=0 GOOS=darwin GOARCH=$(TARGETARCH) $(BUILD_CMD)
 
 image: build
-	@printf "Building image: $(IMG_NAME)\n"
-	@docker build . -t $(IMG_NAME) --build-arg TARGETARCH=${TARGETARCH}
+	printf "Building image: $(IMG_NAME)\n"
+	docker build . -t $(IMG_NAME) --build-arg TARGETARCH=${TARGETARCH}
 
 push: image
-	@docker push $(IMG_NAME)
+	docker push $(IMG_NAME)
 
 dive: image
 	IMG=$$(docker images --quiet $(IMG_NAME)); \
@@ -61,6 +61,6 @@ dive: image
 	docker rmi $${IMG}
 
 clean:
-	@rm -rf kbot; \
+	rm -rf kbot; \
 	docker rmi $(IMG_NAME)
 
