@@ -5,5 +5,3 @@
 ## Week 5: helm charts
 
 ## Week 6 task 1: ci/cd & guthub actions
-
-
