@@ -15,7 +15,7 @@ VERSION = $(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short 
 #VERSION = $(shell git describe --tags --abbrev=0)
 CURRENT_SYS = $(shell uname -a)
 
-IMG_NAME := ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+IMG_NAME := ${REGISTRY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 BUILD_CMD = go build -v -o kbot -ldflags "-X="github.com/kaathepython/telebot/cmd.appVersion=${VERSION}
 
