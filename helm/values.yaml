@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: "ghcr.io"
   repository: "kaathepython/telebot"
-  tag: "v1.1.0-e763606"
+  tag: "v1.0.2-d193b49"
   os: "linux"
   arch: "amd64"
 # Додатково визначте секцію для токену TELE_TOKEN
