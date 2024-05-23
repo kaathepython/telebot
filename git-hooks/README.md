@@ -19,7 +19,7 @@ git config --bool hooks.gitleaks true
 To ensure it works as intended try committing a file with the following content:
 
 ```go
-TELEGRAM_BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+aws_secret="AKIAIMNOJVGFDXXXE4OA"
 ```
 
 The commit should be rejected, and `gitleaks` will output the detected secret name and file where it was found.
