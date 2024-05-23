@@ -21,7 +21,7 @@ then
 fi
 
 echo "Running gitleaks..."
-docker run --rm -v "$(pwd):/repo" -w /repo ghcr.io/gitleaks/gitleaks:latest detect --source . --verbose
+docker run --rm -v "$(pwd):/repo" ghcr.io/gitleaks/gitleaks:latest detect --source="/repo" --verbose
 status=$?
 
 if [ $status -ne 0 ]; then
