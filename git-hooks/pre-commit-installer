@@ -34,4 +34,5 @@ EOF
 
 chmod +x .git/hooks/pre-commit
 
-echo "Pre-commit hook has been installed successfully."
+echo "Pre-commit hook has been installed successfully. To enable it, run:"
+echo "git config --bool hooks.gitleaks true"
